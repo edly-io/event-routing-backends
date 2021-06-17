@@ -19,6 +19,10 @@ class BaseEnrollmentTransformer(XApiTransformer):
     """
     additional_fields = ('context', )
 
+    def __init__(self):
+        super().__init__(self)
+        self.minor_version = '2.1'
+
     def get_object(self):
         """
         Get object for xAPI transformed event.

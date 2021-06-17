@@ -57,6 +57,10 @@ class LinkClickedTransformer(NavigationTransformersMixin):
     xAPI transformer for event generated when user clicks a link.
     """
 
+    def __init__(self):
+        super().__init__(self)
+        self.minor_version = '2.2'
+
     def get_object(self):
         """
         Get object for xAPI transformed event.

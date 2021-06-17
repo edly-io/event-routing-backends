@@ -56,6 +56,10 @@ class BaseVideoTransformer(CaliperTransformer):
     """
     type = 'MediaEvent'
 
+    def __init__(self, event):
+        CaliperTransformer.__init__(self, event)
+        self.minor_version = '1.4'
+
     def get_action(self):
         """
         Return action for the caliper event.

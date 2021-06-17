@@ -19,6 +19,9 @@ class EnrollmentEventTransformers(CaliperTransformer):
         - edx.course.enrollment.deactivated
             Generated when a user is unenrolled from a course.
     """
+    def __init__(self, event):
+        CaliperTransformer.__init__(self, event)
+        self.minor_version = '1.1'
 
     type = 'Event'
 

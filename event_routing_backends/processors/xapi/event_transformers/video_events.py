@@ -111,6 +111,10 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
     additional_fields = ('context', )
     verb_map = VERB_MAP
 
+    def __init__(self):
+        super().__init__(self)
+        self.minor_version = '2.4'
+
     def get_object(self):
         """
         Get object for xAPI transformed event.

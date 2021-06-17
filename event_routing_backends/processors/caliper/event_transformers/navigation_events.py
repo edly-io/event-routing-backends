@@ -22,6 +22,10 @@ class NavigationEventsTransformers(CaliperTransformer):
     action = 'NavigatedTo'
     type = 'NavigationEvent'
 
+    def __init__(self, event):
+        CaliperTransformer.__init__(self, event)
+        self.minor_version = '1.2'
+
     def get_object(self):
         """
         Return transformed object for caliper event.

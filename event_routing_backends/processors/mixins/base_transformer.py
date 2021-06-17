@@ -12,6 +12,7 @@ class BaseTransformerMixin:
 
     required_fields = ()
     additional_fields = ()
+    minor_version = None
 
     def __init__(self, event):
         """
@@ -101,6 +102,7 @@ class BaseTransformerMixin:
                     )
                 )
 
+        self.transformed_event['minor_version'] = self.minor_version
         return self.transformed_event
 
     def extract_username(self):

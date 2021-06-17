@@ -16,5 +16,6 @@
         "type": "VideoObject",
         "duration": "PT3M15S"
     },
-    "type": "Event"
+    "type": "Event",
+    "minor_version": "1.4"
 }

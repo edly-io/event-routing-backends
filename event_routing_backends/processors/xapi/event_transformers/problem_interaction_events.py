@@ -144,6 +144,10 @@ class ProblemSubmittedTransformer(BaseProblemsTransformer):
     """
     additional_fields = ('context', 'result')
 
+    def __init__(self):
+        super().__init__(self)
+        self.minor_version = '2.3'
+
     def get_result(self):
         """
         Get result for xAPI transformed event.

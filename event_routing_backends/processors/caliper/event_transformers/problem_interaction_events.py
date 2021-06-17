@@ -46,6 +46,9 @@ class ProblemEventsTransformers(CaliperTransformer):
     will be added in future as per the mapping document:
     https://docs.google.com/spreadsheets/u/1/d/1z_1IGFVDF-wZToKS2EGXFR3s0NXoh6tTKhEtDkevFEM/edit?usp=sharing.
     """
+    def __init__(self, event):
+        CaliperTransformer.__init__(self, event)
+        self.minor_version = '1.3'
 
     def get_type(self):
         """
