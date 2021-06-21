@@ -13,6 +13,7 @@ class BaseTransformerMixin:
     required_fields = ()
     additional_fields = ()
     minor_version = None
+    backend_name = None
 
     def __init__(self, event):
         """
@@ -101,8 +102,15 @@ class BaseTransformerMixin:
                         key, self.__class__.__name__, self.event['name']
                     )
                 )
+        if self.backend_name == 'caliper':
+            if 'extensions' not in self.transformed_event['object']:
+                self.transformed_event['object']['extensions'] = {}
+            self.transformed_event['object']['extensions']['minorVersion'] = self.minor_version
+        if self.backend_name == 'xAPI':
+            if 'extensions' not in self.transformed_event:
+                self.transformed_event['extensions'] = {}
+            self.transformed_event['extensions']['minorVersion'] = self.minor_version
 
-        self.transformed_event['minor_version'] = self.minor_version
         return self.transformed_event
 
     def extract_username(self):

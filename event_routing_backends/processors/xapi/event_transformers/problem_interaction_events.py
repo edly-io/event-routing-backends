@@ -147,6 +147,7 @@ class ProblemSubmittedTransformer(BaseProblemsTransformer):
     def __init__(self):
         super().__init__(self)
         self.minor_version = '2.3'
+        self.backend_name = 'xAPI'
 
     def get_result(self):
         """

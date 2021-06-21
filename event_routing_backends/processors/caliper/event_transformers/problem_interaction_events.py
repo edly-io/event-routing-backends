@@ -49,6 +49,7 @@ class ProblemEventsTransformers(CaliperTransformer):
     def __init__(self, event):
         CaliperTransformer.__init__(self, event)
         self.minor_version = '1.3'
+        self.backend_name = 'caliper'
 
     def get_type(self):
         """

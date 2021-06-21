@@ -25,6 +25,7 @@ class NavigationEventsTransformers(CaliperTransformer):
     def __init__(self, event):
         CaliperTransformer.__init__(self, event)
         self.minor_version = '1.2'
+        self.backend_name = 'caliper'
 
     def get_object(self):
         """

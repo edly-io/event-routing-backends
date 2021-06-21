@@ -22,6 +22,7 @@ class EnrollmentEventTransformers(CaliperTransformer):
     def __init__(self, event):
         CaliperTransformer.__init__(self, event)
         self.minor_version = '1.1'
+        self.backend_name = 'caliper'
 
     type = 'Event'
 

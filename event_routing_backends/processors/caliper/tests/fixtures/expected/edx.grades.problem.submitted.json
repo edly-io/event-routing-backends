@@ -13,7 +13,8 @@
             "event_transaction_id": "07adb7b7-db7e-4cfd-9d69-5474a4c5774c",
             "event_transaction_type": "edx.grades.problem.submitted",
             "weighted_earned": 0,
-            "weighted_possible": 1
+            "weighted_possible": 1,
+            "minorVersion": "1.3"
         },
         "id": "block-v1:edX+DemoX+Demo_Course+type@problem+block@3fc5461f86764ad7bdbdf6cbdde61e66",
         "type": "Assessment"

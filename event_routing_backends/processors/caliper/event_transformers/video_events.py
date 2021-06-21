@@ -59,6 +59,7 @@ class BaseVideoTransformer(CaliperTransformer):
     def __init__(self, event):
         CaliperTransformer.__init__(self, event)
         self.minor_version = '1.4'
+        self.backend_name = 'caliper'
 
     def get_action(self):
         """

@@ -114,6 +114,7 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
     def __init__(self):
         super().__init__(self)
         self.minor_version = '2.4'
+        self.backend_name = 'xAPI'
 
     def get_object(self):
         """

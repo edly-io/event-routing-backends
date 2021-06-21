@@ -9,7 +9,8 @@
     "id": "urn:uuid:47946874-7ce0-4465-9efe-9b2510c45310",
     "object": {
         "extensions": {
-            "widget_placement": "accordion"
+            "widget_placement": "accordion",
+            "minorVersion": "1.2"
         },
         "id": "http://localhost:18000/courses/course-v1:edX+DemoX+Demo_Course/jump_to/block-v1:edX+DemoX+Demo_Course+type@sequential+block@48ecb924d7fe4b66a230137626bfa93e",
         "type": "WebPage"
