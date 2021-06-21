@@ -21,7 +21,6 @@ The (soon to be) updated event names are as following:
 - edx.video.position.changed
 - edx.video.completed (proposed)
 """
-from logging import getLogger
 
 from tincan import (
     Activity,
@@ -43,9 +42,6 @@ from event_routing_backends.helpers import (
 from event_routing_backends.processors.xapi import constants
 from event_routing_backends.processors.xapi.registry import XApiTransformersRegistry
 from event_routing_backends.processors.xapi.transformer import XApiTransformer, XApiVerbTransformerMixin
-
-logger = getLogger(__name__)
-
 
 VERB_MAP = {
     'load_video': {
@@ -123,10 +119,12 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
         Returns:
             `Activity`
         """
-        course_id = self.event['context']['course_id']
-        video_id = self.event['data']['id']
+        course_id = self.get_data('context.course_id', True)
+
+        video_id = self.get_data('data.id', True)
 
         object_id = make_video_block_id(course_id=course_id, video_id=video_id)
+
         return Activity(
             id=object_id,
             definition=ActivityDefinition(
@@ -134,7 +132,7 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
                 # TODO: how to get video's display name?
                 name=LanguageMap({constants.EN: 'Video Display Name'}),
                 extensions=Extensions({
-                    'code': self.event['data']['code']
+                    'code': self.get_data('data.code')
                 })
             ),
         )
@@ -162,7 +160,7 @@ class BaseVideoTransformer(XApiTransformer, XApiVerbTransformerMixin):
         """
         parent_activities = [
             Activity(
-                id=make_course_url(self.event['context']['course_id']),
+                id=make_course_url(self.get_data('context.course_id')),
                 object_type=constants.XAPI_ACTIVITY_COURSE
             ),
         ]
@@ -192,7 +190,7 @@ class VideoLoadedTransformer(BaseVideoTransformer):
 
         # TODO: Add completion threshold once its added in the platform.
         context.extensions = Extensions({
-            constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_iso(self.event['data']['duration']),
+            constants.XAPI_CONTEXT_VIDEO_LENGTH: convert_seconds_to_iso(self.get_data('data.duration')),
         })
         return context
 
@@ -218,7 +216,7 @@ class VideoInteractionTransformers(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.event['data']['currentTime'])
+                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.get_data('data.currentTime'))
             })
         )
 
@@ -240,10 +238,10 @@ class VideoCompletedTransformer(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.event['data']['duration'])
+                constants.XAPI_RESULT_VIDEO_TIME: convert_seconds_to_iso(self.get_data('data.duration'))
             }),
             completion=True,
-            duration=convert_seconds_to_iso(self.event['data']['duration'])
+            duration=convert_seconds_to_iso(self.get_data('data.duration'))
         )
 
 
@@ -264,7 +262,7 @@ class VideoPositionChangedTransformer(BaseVideoTransformer):
         """
         return Result(
             extensions=Extensions({
-                constants.XAPI_RESULT_VIDEO_TIME_FROM: convert_seconds_to_iso(self.event['data']['old_time']),
-                constants.XAPI_RESULT_VIDEO_TIME_TO: convert_seconds_to_iso(self.event['data']['new_time']),
+                constants.XAPI_RESULT_VIDEO_TIME_FROM: convert_seconds_to_iso(self.get_data('data.old_time')),
+                constants.XAPI_RESULT_VIDEO_TIME_TO: convert_seconds_to_iso(self.get_data('data.new_time')),
             }),
         )
