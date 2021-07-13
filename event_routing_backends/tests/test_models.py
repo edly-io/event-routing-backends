@@ -7,10 +7,11 @@ from edx_django_utils.cache.utils import TieredCache
 
 from event_routing_backends.models import RouterConfiguration
 from event_routing_backends.tests.factories import RouterConfigurationFactory
+from event_routing_backends.tests.test_mixin import RouterTestMixin
 
 
 @ddt.ddt
-class TestRouterConfiguration(TestCase):
+class TestRouterConfiguration(TestCase, RouterTestMixin):
     """
     Test `RouterConfiguration` model
     """
@@ -73,16 +74,94 @@ class TestRouterConfiguration(TestCase):
                 'id': 'test_id'
             }
         }
-
-        router = RouterConfigurationFactory(
-            configurations=config_fixture,
-            enabled=True,
-            route_url='http://test3.com',
-            backend_name='first'
-        )
+        router = self.create_router_configuration(config_fixture, 'first')
 
         hosts = router.get_allowed_hosts(original_event)
         self.assertEqual(config_fixture[:1], hosts)
+
+    def test_allowed_hosts_regex_not_matched(self):
+        config_fixture = [
+            {
+                'match_params': {
+                    'context.org_id': 'abc',
+                    'name': None
+                },
+                'host_configurations': {
+                    'url': 'http://test1.com',
+                    'headers': {
+                        'authorization': 'Token test'
+                    }
+                }
+            }
+        ]
+
+        original_event = {
+            'context': {
+                'org_id': 'test'
+            },
+            'data': {
+                'id': 'test_id'
+            }
+        }
+        router = self.create_router_configuration(config_fixture, 'first')
+
+        hosts = router.get_allowed_hosts(original_event)
+        self.assertEqual([], hosts)
+
+    def test_allowed_hosts_list_match_params(self):
+        config_fixture = [
+            {
+                'match_params': {
+                    'context.org_id': 'test',
+                    'name': ['problem_check', 'showanswer', 'stop_video']
+                },
+                'host_configurations': {
+                    'url': 'http://test1.com',
+                    'headers': {
+                        'authorization': 'Token test'
+                    }
+                }
+            }
+        ]
+
+        original_event = {
+            'name': 'problem_check',
+            'context': {
+                'org_id': 'test'
+            },
+            'data': {
+                'id': 'test_id'
+            }
+        }
+        router = self.create_router_configuration(config_fixture, 'first')
+
+        hosts = router.get_allowed_hosts(original_event)
+        self.assertEqual(config_fixture[:1], hosts)
+
+        original_event1 = {
+            'name': 'play_video',
+            'context': {
+                'org_id': 'test'
+            },
+            'data': {
+                'id': 'test_id'
+            }
+        }
+
+        hosts = router.get_allowed_hosts(original_event1)
+        self.assertEqual([], hosts)
+
+        original_event = {
+            'name': None,
+            'context': {
+                'org_id': 'test'
+            },
+            'data': {
+                'id': 'test_id'
+            }
+        }
+        hosts = router.get_allowed_hosts(original_event)
+        self.assertEqual([], hosts)
 
     def test_model_cache(self):
         test_cache_router = RouterConfigurationFactory(
