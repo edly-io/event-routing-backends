@@ -1,0 +1,28 @@
+{
+    "name":"seek_video",
+    "timestamp":"2021-07-13T12:45:33.636425+00:00",
+    "data":{
+        "id":"5c90cffecd9b48b188cbfea176bf7fe9",
+        "code":"qWxm7CA2v24",
+        "duration":712,
+        "old_time":419.56000104577635,
+        "new_time":425,
+        "type":"onSlideSeek"
+    },
+    "context":{
+        "session":"79f980630adcb0af74724b67c9679e71",
+        "user_id":7,
+        "username":"verified",
+        "ip":"172.18.0.1",
+        "host":"localhost:18000",
+        "agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+        "path":"/event",
+        "referer":"http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@vertical+block@3dc16db8d14842e38324e95d4030b8a0?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view",
+        "accept_language":"en-GB,en-US;q=0.9,en;q=0.8",
+        "client_id":null,
+        "course_id":"",
+        "org_id":"",
+        "event_source":"browser",
+        "page":"http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@vertical+block@3dc16db8d14842e38324e95d4030b8a0?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view"
+    }
+}

@@ -2,6 +2,7 @@
 xAPI processor for transforming and routing events.
 """
 import json
+import pdb
 from logging import getLogger
 
 from eventtracking.processors.exceptions import EventEmissionExit
@@ -40,7 +41,13 @@ class XApiProcessor(BaseTransformerProcessorMixin):
         """
         if not XAPI_EVENTS_ENABLED.is_enabled():
             raise EventEmissionExit
-
+        xapi_logger.info('***********************************************************')
+        xapi_logger.info('***********************************************************')
+        xapi_logger.info('***********************************************************')
+        xapi_logger.info(event)
+        xapi_logger.info('***********************************************************')
+        xapi_logger.info('***********************************************************')
+        xapi_logger.info('***********************************************************')
         transformed_event = super().transform_event(event)
 
         if transformed_event:

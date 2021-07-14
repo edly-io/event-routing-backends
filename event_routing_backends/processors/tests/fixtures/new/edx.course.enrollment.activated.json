@@ -1,0 +1,23 @@
+{
+    "name":"edx.course.enrollment.activated",
+    "timestamp":"2021-07-13T12:06:45.042662+00:00",
+    "data":{
+        "user_id":7,
+        "course_id":"course-v1:edX+DemoX+Demo_Course",
+        "mode":"audit"
+    },
+    "context":{
+        "session":"79f980630adcb0af74724b67c9679e71",
+        "user_id":7,
+        "username":"verified",
+        "ip":"172.18.0.1",
+        "host":"localhost:18000",
+        "agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+        "path":"/api/enrollment/v1/enrollment",
+        "referer":"http://localhost:2000/",
+        "accept_language":"en-GB,en-US;q=0.9,en;q=0.8",
+        "client_id":null,
+        "course_id":"course-v1:edX+DemoX+Demo_Course",
+        "org_id":"edX"
+    }
+}

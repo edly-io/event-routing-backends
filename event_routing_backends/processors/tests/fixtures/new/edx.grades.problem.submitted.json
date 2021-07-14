@@ -1,0 +1,34 @@
+{
+    "name":"edx.grades.problem.submitted",
+    "timestamp":"2021-07-13T12:57:05.445762+00:00",
+    "data":{
+        "user_id":"7",
+        "course_id":"course-v1:edX+DemoX+Demo_Course",
+        "problem_id":"block-v1:edX+DemoX+Demo_Course+type@problem+block@a0effb954cca4759994f1ac9e9434bf4",
+        "event_transaction_id":"ee69d295-8eec-4e86-925e-823019478db7",
+        "event_transaction_type":"edx.grades.problem.submitted",
+        "weighted_earned":0,
+        "weighted_possible":3
+    },
+    "context":{
+        "course_id":"course-v1:edX+DemoX+Demo_Course",
+        "course_user_tags":{
+
+        },
+        "session":"79f980630adcb0af74724b67c9679e71",
+        "user_id":7,
+        "username":"verified",
+        "ip":"172.18.0.1",
+        "host":"localhost:18000",
+        "agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+        "path":"/courses/course-v1:edX+DemoX+Demo_Course/xblock/block-v1:edX+DemoX+Demo_Course+type@problem+block@a0effb954cca4759994f1ac9e9434bf4/handler/xmodule_handler/problem_check",
+        "referer":"http://localhost:18000/xblock/block-v1:edX+DemoX+Demo_Course+type@vertical+block@54bb9b142c6c4c22afc62bcb628f0e68?show_title=0&show_bookmark_button=0&recheck_access=1&view=student_view&format=Homework",
+        "accept_language":"en-GB,en-US;q=0.9,en;q=0.8",
+        "client_id":null,
+        "org_id":"edX",
+        "module":{
+            "display_name":"Multiple Choice Questions",
+            "usage_key":"block-v1:edX+DemoX+Demo_Course+type@problem+block@a0effb954cca4759994f1ac9e9434bf4"
+        }
+    }
+}
